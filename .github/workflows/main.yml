@@ -1,0 +1,15 @@
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - uses: Gerhut/cloudflare-sync-action@main
+      with:
+        cloudflare-token:  ${{ secrets.CLOUDFLARE_TOKEN }}
+        cloudflare-zone-id: ${{ secrets.CLOUDFLARE_ZONE_ID }}
+        files: '*.of.dog'
